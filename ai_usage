@@ -1,1 +1,53 @@
+Tool/model & version: ChatGPT5
+What I asked for: Provide a python code to extract PAM50 subclasses 
+Snippets of prompt(s): I need to extract PAM50 subtypes form the GEO dataset GSE81538. I have inspected the metadata and know that the line that this data begins looks like !Sample_characteristics_ch1 "pam50 subtype: Basal"... provide a python code to extract this data and input it into a table for all 405 samples provided in the metadata
+What I changed before committing: n/a
+How I verified correctness (tests, sample data): ran the code
 
+Tool/model & version: ChatGPT5
+What I asked for: Create labels based on dataset
+Snippets of prompt(s): Write Python code that does the following exactly: Opens the GSE81538_series_matrix.txt.gz file with gzip. Scans all !Sample_characteristics_ch1 lines (do NOT stop after the first one). Extracts PAM50 subtype labels using a regex that matches the text pattern pam50 subtype: followed by the subtype name. Stores all subtype values in a list called subtypes. Loads the first five rows of my transformed expression file (GSE81538_gene_expression_405_transformed.csv.gz) to retrieve the ordered sample IDs (columns T1..T405). Creates a DataFrame mapping each sample ID to its corresponding PAM50 subtype, using the subtypes list in the same order the samples appear in the file.
+What I changed before committing: N/A
+How I verified correctness (tests, sample data): ran the code
+
+Tool/model & version: ChatGPT5
+What I asked for: Provide counts for all subtypes
+Snippets of prompt(s): Please write Python code that: Reads the gene expression matrix, sets the gene column as the index, and transposes it so the data matrix is in the format samples × genes, which is the correct orientation for phenotype-linked analyses. Reads in the subtype label file and uses the sample names to align the phenotype data with the expression matrix. Ensures that only samples present in both the expression and label files are retained.
+What I changed before committing: N/A
+How I verified correctness (tests, sample data): ran the code
+
+Tool/model & version: ChatGPT5
+What I asked for: runa differential expression one vs. all 
+Snippets of prompt(s): For each subtype, I want to compare: group1 = all samples belonging to that subtype group2 = all other samples (rest of the cohort) For each gene, perform: Compute mean expression in group1 and group2.
+What I changed before committing: N/A
+How I verified correctness (tests, sample data): ran the code
+
+Tool/model & version: ChatGPT5
+What I asked for: create volcano plot 
+Snippets of prompt(s): am performing subtype-specific differential expression analysis using my previously generated de_results dictionary, where each entry is a DataFrame I now want to generate volcano plots for each PAM50 subtype. Each plot must: Take a DE DataFrame (de_df) and a subtype name as input. Compute −log10(FDR) using a small epsilon lower-bound to avoid log(0).
+What I changed before committing: N/A
+How I verified correctness (tests, sample data): ran the code
+
+Tool/model & version: ChatGPT5
+What I asked for: create a heatmap 
+Snippets of prompt(s): Please write Python code that does the following: For each subtype in my subtypes list: Filter to significant DE genes (padj < 0.05) Compute the absolute value of log2 fold change Select the top 50 genes with the largest absolute log2FC
+What I changed before committing: N/A
+How I verified correctness (tests, sample data): ran the code
+
+Tool/model & version: ChatGPT5
+What I asked for: create a ML model 
+Snippets of prompt(s): Please write Python code that: Defines a function ml_train(X_input, y, label) that: Splits the dataset into train/test partitions using an 80/20 split, stratified by subtype. Standardizes the data with StandardScaler (fit on training, transform on both training and test sets).
+What I changed before committing: N/A
+How I verified correctness (tests, sample data): ran the code
+
+Tool/model & version: ChatGPT5
+What I asked for: train only on DE selected genes 
+Snippets of prompt(s): Please write Python code that: Subsets my full expression matrix X to only the columns corresponding to selected_genes. Calls the previously defined ml_train function using this reduced feature matrix.
+What I changed before committing: N/A
+How I verified correctness (tests, sample data): ran the code
+
+Tool/model & version: ChatGPT5
+What I asked for: Strongest DE signals 
+Snippets of prompt(s): Please write Python code that: Loops through each subtype in my list subtypes. Selects the top 3 most significant genes.
+What I changed before committing: N/A
+How I verified correctness (tests, sample data): ran the code
