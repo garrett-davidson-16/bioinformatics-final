@@ -1,1 +1,1 @@
-# bioinformatics-final
+Garrett Davidson + 1001337541 + BIOL5340-001
