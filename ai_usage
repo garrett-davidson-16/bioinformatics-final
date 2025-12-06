@@ -1,4 +1,10 @@
 Tool/model & version: ChatGPT5
+What I asked for: Pipeline
+Snippets of prompt(s): I need a workable pipline to train machine learning models on RNA-seq datasets to classify breast cancer subtypes. 
+What I changed before committing: n/a
+How I verified correctness (tests, sample data): n/a
+
+Tool/model & version: ChatGPT5
 What I asked for: Provide a python code to extract PAM50 subclasses 
 Snippets of prompt(s): I need to extract PAM50 subtypes form the GEO dataset GSE81538. I have inspected the metadata and know that the line that this data begins looks like !Sample_characteristics_ch1 "pam50 subtype: Basal"... provide a python code to extract this data and input it into a table for all 405 samples provided in the metadata
 What I changed before committing: n/a
